@@ -33,5 +33,9 @@ fun main () {
     }
     //Por mais que funcione você não pode alterar o tipo já declarado
 
+    val languages = mutableListOf("Java")
+    languages.add("Kotlin")
 
+    println(languages)
 }
+
