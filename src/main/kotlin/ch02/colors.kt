@@ -60,6 +60,22 @@ fun mix(c1: Color, c2: Color) =
         else -> throw Exception("Dirty Color")
     }
 
+//e a função for chamada com frequência, vale a pena reescrever o código de uma maneira diferente para evitar a criação
+// de muitos objetos de curta duração, que precisam ser limpos pelo garbage collector.
+fun mixOptimized(c1: Color, c2: Color) =
+    when{
+        (c1 == Color.RED && c2 == Color.YELLOW) ||
+        (c1 == Color.YELLOW && c2 == Color.RED)
+            -> Color.ORANGE
+        (c1 == Color.YELLOW && c2 == Color.BLUE) ||
+        (c1 == Color.BLUE && c2 == Color.YELLOW)
+            -> Color.GREEN
+        (c1 == Color.BLUE && c2 == Color.VIOLET) ||
+                (c1 == Color.VIOLET && c2 == Color.BLUE)
+            -> Color.INDIGO
+        else -> throw Exception("Dirty Color")
+    }
+
 
 fun main(){
     println(Color.BLUE.rgb)
@@ -71,4 +87,6 @@ fun main(){
     //warm (red = 255)
 
     println(mix(Color.BLUE,Color.YELLOW))
+
+    println(mixOptimized(Color.BLUE, Color.YELLOW))
 }
